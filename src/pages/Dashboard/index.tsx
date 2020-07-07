@@ -47,12 +47,13 @@ const Dashboard: React.FC = () => {
         balanceRes.formattedTotal = formatValue(balanceRes.total);
 
         const transactionsFormatted = transactionsRes.map(transaction => {
-          transaction.formattedValue = formatValue(transaction.value);
-          transaction.formattedDate = formatDate(transaction.created_at);
-          return transaction;
+          const formattedTransaction = transaction;
+          formattedTransaction.formattedValue = formatValue(transaction.value);
+          formattedTransaction.formattedDate = formatDate(
+            transaction.created_at,
+          );
+          return formattedTransaction;
         }) as Transaction[];
-
-        console.log(transactionsFormatted);
 
         setTransactions(transactionsFormatted);
         setBalance(balanceRes);
